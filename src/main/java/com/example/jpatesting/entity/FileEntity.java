@@ -3,48 +3,25 @@ package com.example.jpatesting.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "files")
+@Getter
+@Setter
+@Table(name = "mt_file")
 public class FileEntity {
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "url")
+    private String url;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "filename")
+    private String fileName;
 
-    @Column(name = "type")
-    private String type;
+    public FileEntity(){}
 
-    public FileEntity( String name, String type) {
-        this.name = name;
-        this.type = type;
+    public FileEntity(String url,String fileName) {
+        this.url = url;
+        this.fileName = fileName;
     }
-
-    public FileEntity() {}
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-
-
 }
